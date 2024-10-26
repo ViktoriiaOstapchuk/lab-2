@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class UzytkownikZUS {
+    private String imie;
+    private String nazwisko;
+    private String pesel;
+    private boolean ubezpieczony;
+    private Adres adres;
+
+    public UzytkownikZUS(String imie, String nazwisko, String pesel, boolean ubezpieczony, Adres adres) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.pesel = pesel;
+        this.ubezpieczony = ubezpieczony;
+        this.adres = adres;
+    }
+
+    public void wyswietlInformacje() {
+        System.out.println("Imie i nazwisko: " + imie + " " + nazwisko);
+        System.out.println("PESEL: " + pesel);
+        System.out.println("Adres: " + adres);
+        System.out.println("Ubezpieczony: " + (ubezpieczony ? "Tak" : "Nie"));
+        System.out.println("------------------------------");
+    }
+
+    public static class Adres {
+        private String ulica;
+        private String numer;
+        private String kodPocztowy;
+        private String miasto;
+
+        public Adres(String ulica, String numer, String kodPocztowy, String miasto) {
+            this.ulica = ulica;
+            this.numer = numer;
+            this.kodPocztowy = kodPocztowy;
+            this.miasto = miasto;
+        }
+
+        @Override
+        public String toString() {
+            return ulica + " " + numer + ", " + kodPocztowy + " " + miasto;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        List<UzytkownikZUS> uzytkownicy = new ArrayList<>();
+
+        uzytkownicy.add(new UzytkownikZUS("Kinga", "Ficek", "83021490542", false, 
+                 new Adres("Ul. Oriona", "25", "71-781", "Szczecin")));
+        uzytkownicy.add(new UzytkownikZUS("Piotr", "Kus", "20231231659", false, 
+                 new Adres("Ul. Lawendowa", "123", "15-642", "Katowice")));
+        uzytkownicy.add(new UzytkownikZUS("Jagoda", "Osko", "68101709703", true, 
+                 new Adres("Ul. Brzozowa", "8", "44-300", "Warszawa")));
+
+        for (UzytkownikZUS uzytkownik : uzytkownicy) {
+            uzytkownik.wyswietlInformacje();
+        }
+    }
+}
